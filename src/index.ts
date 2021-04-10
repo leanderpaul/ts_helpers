@@ -8,7 +8,7 @@ export function trimObject<T extends object>(obj: T): T {
   for (let index = 0; index < keys.length; index++) {
     const key = keys[index];
     let value: any = obj[key];
-    if (typeof value === 'object') newObj[key] = trimObject(value);
+    if (typeof value === 'object' && !Array.isArray(value)) newObj[key] = trimObject(value);
     else if (value) newObj[key] = value;
   }
   return newObj;
